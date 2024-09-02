@@ -1,12 +1,12 @@
 # 2. Kolik je možné si koupit litrů mléka (114201) a kilogramů chleba (111301) za první a poslední srovnatelné období v dostupných datech cen a mezd?
 
 WITH milk_bread AS (
-	SELECT round(avg(value),2) AS price
+	SELECT value AS price
 		,value_type_code 
 		,v_year 
 	FROM t_michal_jelinek_project_sql_primary_final tmjpspf
-	WHERE value_type_code IN (114201, 111301) #AND v_year IN (2006, 2007, 2008)
-	GROUP BY value_type_code, v_year 
+	WHERE value_type_code IN (114201, 111301)
+		AND industry_and_region_code IS NULL 
 )
 SELECT 
 	cpc.name 
@@ -28,14 +28,13 @@ FROM (
 ) m	     
 LEFT JOIN
 	(
-	SELECT round(avg(value),2) AS payroll
+	SELECT value AS payroll
 		,v_year AS p_year
 	FROM t_michal_jelinek_project_sql_primary_final tmjpspf 
 	WHERE value_type_code = 5958
-	GROUP BY v_year
+		AND industry_and_region_code IS NULL 
 	) p
 ON p.p_year = m.v_year
 LEFT JOIN
 	czechia_price_category cpc 
 ON cpc.code = m.value_type_code
-

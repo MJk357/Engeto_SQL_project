@@ -13,6 +13,7 @@ FROM (
 		,LEAD(v_year,1) OVER (ORDER BY industry_and_region_code,v_year) AS next_year		
 	FROM t_michal_jelinek_project_sql_primary_final
 	WHERE value_type_code = 5958
+	AND industry_and_region_code IS NOT NULL
 ) mzdy
 LEFT JOIN czechia_payroll_industry_branch cpib 
 	ON cpib.code = mzdy.industry_and_region_code
