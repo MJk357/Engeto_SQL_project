@@ -1,5 +1,5 @@
--- project_SQL_primary_final 
--- (pro data mezd a cen potravin za Českou republiku sjednocených na totožné porovnatelné období – společné roky)
+# project_SQL_primary_final 
+# (pro data mezd a cen potravin za Českou republiku sjednocených na totožné porovnatelné období – společné roky)
 CREATE OR REPLACE VIEW t_michal_jelinek_project_SQL_primary_final AS
 SELECT round(avg(value),2) AS value
 	,value_type_code 
