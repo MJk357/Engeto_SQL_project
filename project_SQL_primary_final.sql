@@ -15,6 +15,3 @@ SELECT round(avg(value),2) AS value
 	,YEAR(date_from) AS v_year
 FROM czechia_price
 GROUP BY category_code, region_code, YEAR(date_from) 
-
-
-#DROP VIEW IF EXISTS t_michal_jelinek_project_SQL_primary_final
